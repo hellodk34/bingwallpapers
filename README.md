@@ -1,5 +1,5 @@
 # bingwallpapers
-save daily bingwallpapers to your disk
+saving daily bingwallpaper to your disk
 
 # Usage
 
@@ -24,3 +24,4 @@ just type `crontab -e` then, add following line into the end of screen:
 `0 12 * * * /usr/bin/java -jar bingwallpapers-1.0-SNAPSHOT-jar-with-dependencies.jar --savePath=/mnt/yourdisk/images`
 
 This means saving pictures to the images folder at 12 noon every day.
+
