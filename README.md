@@ -5,11 +5,11 @@ saving daily bingwallpaper to your disk
 
 in Linux or macOS:
 
-`java -jar bingwallpapers-1.0-SNAPSHOT-jar-with-dependencies.jar --savePath=/mnt/yourdisk/images`
+`java -jar /path/to/bingwallpapers-1.0-SNAPSHOT-jar-with-dependencies.jar --savePath=/mnt/yourdisk/images`
 
 in Windows:
 
-`java -jar bingwallpapers-1.0-SNAPSHOT-jar-with-dependencies.jar --savePath=d:\images`
+`java -jar /path/to/bingwallpapers-1.0-SNAPSHOT-jar-with-dependencies.jar --savePath=d:\images`
 
 use your own savePath please.
 
@@ -21,7 +21,6 @@ the jar file is only 454KB, you can run it as a crontab job for saving daily bin
 
 just type `crontab -e` then, add following line into the end of screen:
 
-`0 12 * * * /usr/bin/java -jar bingwallpapers-1.0-SNAPSHOT-jar-with-dependencies.jar --savePath=/mnt/yourdisk/images`
+`0 12 * * * /usr/bin/java -jar /path/to/bingwallpapers-1.0-SNAPSHOT-jar-with-dependencies.jar --savePath=/mnt/yourdisk/images`
 
 This means saving pictures to the images folder at 12 noon every day.
-
