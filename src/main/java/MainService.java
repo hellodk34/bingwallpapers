@@ -21,6 +21,9 @@ import java.time.format.DateTimeFormatter;
  */
 public class MainService {
 
+    private static final String apiUrl = "http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=zh-CN";
+    private static final String baseUrl = "http://bing.com";
+
     public static String getTodayString() {
         LocalDate date = LocalDate.now();
         DateTimeFormatter formatter1 = DateTimeFormatter.ofPattern("yyyy-MM-dd");
@@ -28,12 +31,10 @@ public class MainService {
         return now;
     }
 
-    public static void savePic2Disk(String savePath) {
+    public static void savePic2Disk(String saveFolder) {
         HttpURLConnection con;
         BufferedReader bufferedReader;
         String finalImageUrl = "";
-        String baseUrl = "http://bing.com";
-        String apiUrl = "http://www.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1&mkt=zh-CN";
         try {
             URL url = new URL(apiUrl);
             // 得到连接对象
@@ -63,7 +64,7 @@ public class MainService {
 
         if (finalImageUrl != "" && finalImageUrl != null) {
             try {
-                Path path = Paths.get(getRealSavePath(savePath));
+                Path path = Paths.get(getRealSaveFolder(saveFolder));
                 String todayString = getTodayString();
                 StringBuilder sb = new StringBuilder();
                 sb.append(path.toString()).append("/").append(todayString).append(".jpg");
@@ -94,22 +95,22 @@ public class MainService {
         }
     }
 
-    private static String getRealSavePath(String savePath) {
-        return savePath.replace("--savePath=", "");
+    private static String getRealSaveFolder(String saveFolder) {
+        return saveFolder.replace("--saveFolder=", "");
     }
 
     public static void main(String[] args) {
         int length = args.length;
         if (length < 1 || length > 1) {
-            System.out.println("usage: `java -jar xxx.jar --savePath=xxx`, please use correct parameter to run this program.");
-            System.exit(0);
+            System.out.println("usage: `java -jar xxx.jar --saveFolder=xxx`, please use correct parameter to run this program.");
+            return;
         }
-        String savePath = args[0];
-        if (!savePath.startsWith("--savePath=")) {
-            System.out.println("usage: `java -jar xxx.jar --savePath=xxx`, please use correct parameter to run this program.");
-            System.exit(0);
+        String saveFolder = args[0];
+        if (!saveFolder.startsWith("--saveFolder=")) {
+            System.out.println("usage: `java -jar xxx.jar --saveFolder=xxx`, please use correct parameter to run this program.");
+            return;
         }
-        savePic2Disk(savePath);
+        savePic2Disk(saveFolder);
     }
 
 }
